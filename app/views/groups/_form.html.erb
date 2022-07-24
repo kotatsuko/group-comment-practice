@@ -1,0 +1,35 @@
+<%= form_with model: group, local: true do |f| %>
+  <div class="form-group">
+    <%= f.label :グループ名 %>
+    <%= f.text_field :group_name, class: 'form-control' %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :紹介文 %>
+    <%= f.text_area :introduction, class: 'form-control' %>
+  </div>
+
+  <div>
+    <%= f.label :動画の種類 %>
+    <%= f.select :video_type, [["映画", "映画"], ["30分アニメ", "30分アニメ"], ["ドラマ", "ドラマ"], ["YouTube", "YouTube"],["その他","その他"]], include_blank: "選択して下さい" %>
+  </div>
+
+  <div>
+    <%= f.label :動画のタイトル %>
+    <%= f.text_area :video_title, class: 'form-control' %>
+  </div>
+
+  <div>
+    <%= f.label :動画時間 %>
+    <%= f.time_field :video_time, class: 'form-control' %>分
+  </div>
+
+  <div>
+    <%= f.label :開始日時 %>
+    <%= f.datetime_select :start_time, class: 'form-control' %>
+  </div>
+
+  <div class="form-group">
+    <%= f.submit class: 'btn btn-info' %>
+  </div>
+<% end %>
