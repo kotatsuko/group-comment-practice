@@ -1,2 +1,72 @@
 <h1>Groups#show</h1>
-<p>Find me in app/views/groups/show.html.erb</p>
+
+
+<h2><%= @group.group_name %></h2>
+<div>
+  <%= image_tag @group.get_group_image(100,100) %>
+</div>
+<table>
+  <thead>
+    <tr>
+      <th>introduction</th>
+      <th>video_type</th>
+      <th>video_title</th>
+      <th>参加予定人数</th>
+      <th>動画時間</th>
+      <th>開始時間</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+        <%= @group.introduction %>
+      </td>
+      <td>
+        <%= @group.video_type %>
+      </td>
+      <td>
+        <%= @group.video_title %>
+      </td>
+      <td>
+        <%= @group.users.count %>人参加予定
+      </td>
+      <td>
+        <%= @group.video_time %>
+      </td>
+      <td>
+        <%= @group.start_time %>
+      </td>
+      <td>
+        <% if @group.owner_id == current_user.id %>
+          <%= link_to 'Edit', edit_group_path(@group) %>
+        <% elsif @group.users.include?(current_user) %>
+          <%= link_to 'Leave this group', group_leave_path(@group), method: :delete, class: "btn btn-sm btn-danger" %>
+        <% else %>
+          <%= link_to 'Join this group', group_join_path(@group), class: "btn btn-sm btn-success" %>
+        <% end %>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+
+<% if @group.users.include?(current_user) %>
+<div id = "comments">
+  <% @group.comments.each do |comment| %>
+    <div>
+      <%= image_tag comment.user.get_profile_image(50,50) %>
+      <%= comment.body %>
+      <%= comment.user.name %>
+      <%= comment.created_at.strftime('%Y/%m/%d %H:%M:%S') %>
+    </div>
+  <% end %>
+</div>
+<div>
+  <%= form_with model: [@group, @comment] do |f| %>
+    <%= f.text_area :body, rows: '5', placeholder: "コメントをここに" %>
+    <%= f.submit "送信する" %>
+  <% end %>
+</div>
+<% else %>
+  <h3>同時視聴のコメントを観覧、投稿したい場合は、グループに参加してください</h3>
+<% end %>

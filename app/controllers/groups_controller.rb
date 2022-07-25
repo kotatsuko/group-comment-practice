@@ -20,11 +20,12 @@ class GroupsController < ApplicationController
   def join
     @group = Group.find(params[:group_id])
     @group.users << current_user
-    redirect_to  groups_path
+    redirect_to  group_path(@group)
   end
 
   def show
     @group = Group.find(params[:id])
+    @comment = Comment.new
   end
 
   def index
@@ -32,6 +33,7 @@ class GroupsController < ApplicationController
   end
 
   def edit
+    @group = Group.find(params[:id])
   end
 
   def update
@@ -42,8 +44,8 @@ class GroupsController < ApplicationController
     end
   end
 
-  def destroy
-    @group = Group.find(params[:id])
+  def leave
+    @group = Group.find(params[:group_id])
     @group.users.delete(current_user)
     redirect_to groups_path
   end
