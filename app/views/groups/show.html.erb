@@ -51,21 +51,11 @@
 
 
 <% if @group.users.include?(current_user) %>
-<div id = "comments">
-  <% @group.comments.each do |comment| %>
-    <div>
-      <%= image_tag comment.user.get_profile_image(50,50) %>
-      <%= comment.body %>
-      <%= comment.user.name %>
-      <%= comment.created_at.strftime('%Y/%m/%d %H:%M:%S') %>
-    </div>
-  <% end %>
+<div id = "comment-container">
+  <%= render @comments %>
 </div>
 <div>
-  <%= form_with model: [@group, @comment] do |f| %>
-    <%= f.text_area :body, rows: '5', placeholder: "コメントをここに" %>
-    <%= f.submit "送信する" %>
-  <% end %>
+  <%= render partial: "comment_form", locals: { group: @group, comment: @comment } %>
 </div>
 <% else %>
   <h3>同時視聴のコメントを観覧、投稿したい場合は、グループに参加してください</h3>
