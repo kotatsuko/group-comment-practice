@@ -8,5 +8,6 @@ Rails.application.routes.draw do
     delete "leave" => "groups#leave", as: "leave"
     resources :comments, only: [:create]
   end
+  get "search" => "searches#search"
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

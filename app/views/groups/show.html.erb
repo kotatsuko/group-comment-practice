@@ -1,6 +1,4 @@
-<h1>Groups#show</h1>
-
-
+<div class = "group-detail">
 <h2><%= @group.group_name %></h2>
 <div>
   <%= image_tag @group.get_group_image(100,100) %>
@@ -31,10 +29,10 @@
         <%= @group.users.count %>人参加予定
       </td>
       <td>
-        <%= @group.video_time %>
+        <%= @group.video_time.strftime('%H:%M') %>
       </td>
       <td>
-        <%= @group.start_time %>
+        <%= @group.start_time.strftime('%Y/%m/%d %H:%M:%S') %>
       </td>
       <td>
         <% if @group.owner_id == current_user.id %>
@@ -49,14 +47,20 @@
   </tbody>
 </table>
 
+<h3><%= ActionCable.server.connections.length %>人参加中</h3>
+</div>
 
+<div id = "comment-full">
 <% if @group.users.include?(current_user) %>
 <div id = "comment-container">
   <%= render @comments %>
 </div>
-<div>
+
+<div id = "comment_form">
   <%= render partial: "comment_form", locals: { group: @group, comment: @comment } %>
 </div>
 <% else %>
   <h3>同時視聴のコメントを観覧、投稿したい場合は、グループに参加してください</h3>
 <% end %>
+</div>
+

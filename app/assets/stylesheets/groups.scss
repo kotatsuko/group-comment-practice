@@ -1,3 +1,19 @@
 // Place all the styles related to the groups controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
+
+
+.group-detail{
+  width: 100%; /* 幅いっぱいを指定 */
+  height: 250px;
+  background: #9f9f9f; /* 背景色にグレーを指定 */
+  position: fixed; /* ウィンドウを基準に画面に固定 */
+  top: 50px; /* 上下の固定位置を上から0pxにする */
+  left: 0; /* 左右の固定位置を左から0pxにする */
+  padding: 20px;
+}
+
+#comment-full{
+  position: absolute; /* ウィンドウを基準に画面に固定 */
+  top: 300px; /* 上下の固定位置を上から0pxにする */
+}

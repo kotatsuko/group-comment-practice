@@ -1,0 +1,31 @@
+<h2>【<%= @video_type %>】のグループから【<%= @range %>】の中に【<%= @word %>】を含むものを検索しました。</h2>
+<table>
+  <thead>
+    <tr>
+      <th></th>
+      <th>グループ名</th>
+      <th>説明</th>
+      <th>動画タイトル</th>
+      <th>動画の種類</th>
+      <th>動画の時間</th>
+      <th>開始時間</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @groups.each do |group| %>
+    <tr>
+      <td><%= image_tag group.get_group_image(100,100) %></td>
+      <td>
+        <%= link_to group_path(group) do %>
+          <%= group.group_name %>
+        <% end %>
+      </td>
+      <td><%= group.introduction %></td>
+      <td><%= group.video_title %></td>
+      <td><%= group.video_type %></td>
+      <td><%= group.video_time.strftime('%H:%M') %></td>
+      <td><%= group.start_time.strftime('%Y/%m/%d %H:%M:%S') %></td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>

@@ -13,3 +13,45 @@
  *= require_tree .
  *= require_self
  */
+
+
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+header {
+    width: 100%; /* 幅いっぱいを指定 */
+    height: 50px;
+    background: #CCC; /* 背景色にグレーを指定 */
+    padding: 20px 50px; /* ヘッダーに上下左右それぞれ余白を指定 */
+    position: fixed; /* ウィンドウを基準に画面に固定 */
+    top: 0; /* 上下の固定位置を上から0pxにする */
+    left: 0; /* 左右の固定位置を左から0pxにする */
+    display: flex; /* 中の要素を横並びにする */
+    align-items: center; /* 中の要素を上下中央に並べる */
+}
+
+header .nav .menu {
+    display: flex; /* 中の要素を横並びにする */
+}
+
+header .nav .menu li {
+    list-style: none; /* リストの[・]を消す */
+}
+
+header .nav .menu li + li {
+    margin-left: 40px; /* メニューそれぞれに間隔をあけるため */
+}
+
+main {
+    height: 100vw; /* スクロールの演出を見れるようにmainに高さを指定 */
+}
+
+
+
+main{
+  position: absolute;
+  top: 50px;
+}

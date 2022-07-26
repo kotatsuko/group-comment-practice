@@ -16,4 +16,82 @@ class Group < ApplicationRecord
     group_image.variant(resize_to_limit: [width, height]).processed
   end
 
+  def self.looks(range,video_type,word)
+    if video_type = "映画"
+      group = Group.where(video_type:"映画")
+      if range = "グループ名"
+        @group = group.where("group_name LIKE?","%#{word}%")
+      elsif range = "動画タイトル"
+        @group = group.where("video_title LIKE?","%#{word}%")
+      elsif range = "説明分"
+        @group = group.where("introduction LIKE?","%#{word}%")
+      elsif range = "すべて"
+        group1 = group.where("group_name LIKE?","%#{word}%")
+        group2 = group.where("video_title LIKE?","%#{word}%")
+        group3 = group.where("introduction LIKE?","%#{word}%")
+        @group = group1 + group2 + group3
+      end
+
+    elsif video_type = "30分アニメ"
+      group = Group.where(video_type:"30分アニメ")
+      if range = "グループ名"
+        @group = group.where("group_name LIKE?","%#{word}%")
+      elsif range = "動画タイトル"
+        @group = group.where("video_title LIKE?","%#{word}%")
+      elsif range = "説明分"
+        @group = group.where("introduction LIKE?","%#{word}%")
+      elsif range = "すべて"
+        group1 = group.where("group_name LIKE?","%#{word}%")
+        group2 = group.where("video_title LIKE?","%#{word}%")
+        group3 = group.where("introduction LIKE?","%#{word}%")
+        @group = group1 + group2 + group3
+      end
+
+    elsif video_type = "ドラマ"
+      group = Group.where(video_type:"ドラマ")
+      if range = "グループ名"
+        @group = group.where("group_name LIKE?","%#{word}%")
+      elsif range = "動画タイトル"
+        @group = group.where("video_title LIKE?","%#{word}%")
+      elsif range = "説明分"
+        @group = group.where("introduction LIKE?","%#{word}%")
+      elsif range = "すべて"
+        group1 = group.where("group_name LIKE?","%#{word}%")
+        group2 = group.where("video_title LIKE?","%#{word}%")
+        group3 = group.where("introduction LIKE?","%#{word}%")
+        @group = group1 + group2 + group3
+      end
+
+    elsif video_type = "YouTube"
+      group = Group.where(video_type:"YouTube")
+      if range = "グループ名"
+        @group = group.where("group_name LIKE?","%#{word}%")
+      elsif range = "動画タイトル"
+        @group = group.where("video_title LIKE?","%#{word}%")
+      elsif range = "説明分"
+        @group = group.where("introduction LIKE?","%#{word}%")
+      elsif range = "すべて"
+        group1 = group.where("group_name LIKE?","%#{word}%")
+        group2 = group.where("video_title LIKE?","%#{word}%")
+        group3 = group.where("introduction LIKE?","%#{word}%")
+        @group = group1 + group2 + group3
+      end
+
+    elsif video_type = "その他"
+      group = Group.where(video_type:"その他")
+      if range = "グループ名"
+        @group = group.where("group_name LIKE?","%#{word}%")
+      elsif range = "動画タイトル"
+        @group = group.where("video_title LIKE?","%#{word}%")
+      elsif range = "説明分"
+        @group = group.where("introduction LIKE?","%#{word}%")
+      elsif range = "すべて"
+        group1 = group.where("group_name LIKE?","%#{word}%")
+        group2 = group.where("video_title LIKE?","%#{word}%")
+        group3 = group.where("introduction LIKE?","%#{word}%")
+        @group = group1 + group2 + group3
+      end
+    end
+  end
+
 end

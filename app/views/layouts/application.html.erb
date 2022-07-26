@@ -12,29 +12,41 @@
 
   <body>
     <header>
+    <nav class = "nav">
+    <ul class = "menu">
+      <% if user_signed_in? %>
+        <li>
+          <%= link_to "みんなで同時視聴！", root_path %>
+        </li>
+        <li>
+          <%= link_to "マイページ", user_path(current_user) %>
+        </li>
+        <li>
+          <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
+        </li>
+        <li>
+          <%= link_to "グループ作成", new_group_path %>
+        </li>
+        <li>
+          <%= link_to "グループリスト", groups_path %>
+        </li>
+      <% else %>
+        <li>
+          <%= link_to "新規登録", new_user_registration_path %>
+        </li>
+        <li>
+          <%= link_to "ログイン", new_user_session_path %>
+        </li>
+        
+      <% end %>
+    </ul>
+    </nav>
     <% if user_signed_in? %>
-      <li>
-        <%= link_to "マイページ", user_path(current_user) %>
-      </li>
-      <li>
-        <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
-      </li>
-      <li>
-        <%= link_to "グループ作成", new_group_path %>
-      </li>
-      <li>
-        <%= link_to "グループリスト", groups_path %>
-      </li>
-
-    <% else %>
-      <li>
-        <%= link_to "新規登録", new_user_registration_path %>
-      </li>
-      <li>
-        <%= link_to "ログイン", new_user_session_path %>
-      </li>
+      <%= render "searches/search_form" %>
     <% end %>
     </header>
+    <main>
     <%= yield %>
+    </main>
   </body>
 </html>

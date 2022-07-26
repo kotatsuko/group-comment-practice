@@ -28,8 +28,8 @@
     <td><%= group.video_type %></td>
     <td><%= group.video_title %></td>
     <td><%= group.users.count %>人参加予定</td>
-    <td><%= group.video_time %></td>
-    <td><%= group.start_time %></td>
+    <td><%= group.video_time.strftime('%H:%M') %></td>
+    <td><%= group.start_time.strftime('%Y/%m/%d %H:%M:%S') %></td>
     <td>
       <% if group.owner_id == current_user.id %>
         <%= link_to 'Edit', edit_group_path(group) %>
